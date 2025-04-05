@@ -623,3 +623,12 @@ img.skill-icon {
     box-shadow: none;     /* Loại bỏ bóng viền nếu có */
     outline: none;        /* Loại bỏ outline */
 }
+.profile-detail a {
+    text-decoration: none;   /* Bỏ gạch chân */
+    color: var(--text);        /* Màu mặc định */
+    transition: color 0.3s ease; /* Hiệu ứng chuyển màu mượt */
+}
+
+.profile-detail a:hover {
+    color: var(--accent);      /* Màu thay đổi khi hover */
+}
