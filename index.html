@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CV Chuyên Nghiệp | Trà Văn Hiếu (Quốt)</title>
+  <title>CV | Trà Văn Hiếu (Hiếu Trớt Quớt)</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,6 +11,21 @@
   <!-- Thêm thư viện html2pdf -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <link rel="stylesheet" href="travanhieu.css">
+  <style>
+    /* Optional: Styling thông báo loading */
+    #loading-message {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #000;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      z-index: 9999;
+      font-size: 16px;
+    }
+  </style>
 </head>
 <body>
   <div class="header">
@@ -23,12 +38,13 @@
   </div>
 
   <div id="pdf-content" class="container">
+    <!-- Phần thông tin cá nhân -->
     <div class="profile animate">
       <div class="profile-image">
         <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/a%CC%89nh%20%C4%91a%CC%A3i%20die%CC%A3%CC%82n.jpg-lfXwybk8P4YFhZ1lKUvBJ6QvTVfgnP.jpeg" alt="Trà Văn Hiếu (Quốt)">
       </div>
       <div class="profile-info">
-        <h1 class="profile-name">Trà Văn Hiếu (Quốt)</h1>
+        <h1 class="profile-name">Trà Văn Hiếu (Hiếu Trớt Quớt)</h1>
         <h2 class="profile-title">Digital Creator & Flycam Specialist</h2>
         <div class="profile-details">
           <div class="profile-detail">
@@ -55,6 +71,7 @@
       </div>
     </div>
 
+    <!-- Nội dung chính -->
     <div class="main-content">
       <div class="left-column">
         <section class="section animate delay-1">
@@ -334,7 +351,122 @@
     </div>
   </div>
 
-  <!-- Nhúng file JavaScript bên ngoài -->
-  <script src="travanhieu.js"></script>
+  <!-- JavaScript cho tính năng PDF và animation -->
+  <script>
+    // Khi DOMContentLoaded, ẩn các phần tử animate ban đầu
+    document.addEventListener('DOMContentLoaded', function() {
+      const animatedElements = document.querySelectorAll('.animate');
+      animatedElements.forEach(element => {
+        element.style.opacity = '0';
+      });
+    
+      setTimeout(() => {
+        animatedElements.forEach(element => {
+          element.style.opacity = '1';
+        });
+      }, 100);
+    });
+    
+    // Hàm animate các thanh kỹ năng
+    function animateSkillBars() {
+      const skillBars = document.querySelectorAll('.skill-bar-fill');
+      skillBars.forEach(bar => {
+        const targetWidth = bar.style.width;
+        bar.style.width = '0';
+        setTimeout(() => {
+          bar.style.width = targetWidth;
+        }, 300);
+      });
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(animateSkillBars, 500);
+    });
+    
+    // Lưu trữ giá trị width ban đầu của các skill bar
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+        bar.setAttribute('data-width', bar.style.width);
+      });
+    });
+    
+    // Đảm bảo khi in hoặc chuyển PDF, các hiệu ứng đã được tắt
+    window.onbeforeprint = function() {
+      document.querySelectorAll('.animate').forEach(el => {
+        el.style.opacity = '1';
+        el.style.animation = 'none';
+      });
+      document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+        const targetWidth = bar.getAttribute('data-width') || bar.style.width;
+        bar.style.width = targetWidth;
+        bar.style.animation = 'none';
+      });
+    };
+    
+    // Hàm tải PDF, chỉ khi ấn nút, đợi 6 giây cho trang ổn định
+    function downloadPDF() {
+      const element = document.getElementById('pdf-content');
+      const images = element.querySelectorAll('img');
+      const imagePromises = Array.from(images).map(img => {
+        if (img.complete) return Promise.resolve();
+        return new Promise(resolve => {
+          img.onload = resolve;
+          img.onerror = resolve;
+        });
+      });
+    
+      Promise.all(imagePromises).then(() => {
+        // Tạo thông báo loading (nếu chưa có)
+        let loading = document.getElementById('loading-message');
+        if (!loading) {
+          loading = document.createElement('div');
+          loading.id = 'loading-message';
+          loading.innerText = 'Đang chuẩn bị tải PDF... Vui lòng chờ 6 giây';
+          document.body.appendChild(loading);
+        }
+    
+        // Đợi 6 giây để trang hiển thị ổn định và cache đầy đủ
+        setTimeout(() => {
+          const opt = {
+            margin: [5, 5, 5, 5],
+            filename: 'CV_TraVanHieu_Quot.pdf',
+            image: { type: 'jpeg', quality: 1.0 },
+            html2canvas: { 
+              scale: 3,
+              useCORS: true,
+              logging: true,
+              letterRendering: true,
+              allowTaint: true,
+            },
+            jsPDF: { 
+              unit: 'mm', 
+              format: 'a4', 
+              orientation: 'portrait',
+              compress: false
+            },
+            pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+          };
+    
+          html2pdf()
+            .set(opt)
+            .from(element)
+            .save()
+            .then(() => {
+              console.log('PDF đã được tải thành công!');
+              if (loading) {
+                document.body.removeChild(loading);
+              }
+            })
+            .catch(err => {
+              console.error('Lỗi khi tạo PDF:', err);
+              alert('Có lỗi khi tạo PDF, vui lòng thử lại!');
+              if (loading) {
+                document.body.removeChild(loading);
+              }
+            });
+        }, 6000);
+      });
+    }
+  </script>
 </body>
 </html>
