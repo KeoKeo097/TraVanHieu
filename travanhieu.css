@@ -613,3 +613,13 @@ h1, h2, h3, h4, h5, h6 {
         -webkit-print-color-adjust: exact;
     }
 }
+img.skill-icon {
+    width: 1em;           /* Kích thước tương đương với font-size */
+    height: 1em;          /* Chiều cao phù hợp */
+    vertical-align: middle;  /* Căn giữa theo chiều dọc với text */
+    display: inline-block;
+    object-fit: contain;  /* Giữ tỉ lệ ảnh */
+    border: none;         /* Loại bỏ viền */
+    box-shadow: none;     /* Loại bỏ bóng viền nếu có */
+    outline: none;        /* Loại bỏ outline */
+}
