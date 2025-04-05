@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Chuyên Nghiệp | Trà Văn Hiếu (Quốt)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Thêm thư viện html2pdf -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        :root {
+            --primary: #1e293b;
+            --secondary: #e11d48;
+            --accent: #0ea5e9;
+            --light: #f1f5f9;
+            --dark: #0f172a;
+            --text: #334155;
+            --text-light: #64748b;
+            --background: #ffffff;
+            --card-bg: #f8fafc;
+            --border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text);
+            background-color: var(--light);
+            line-height: 1.5;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 15px;
+            background-color: var(--background);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: var(--background);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 15px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #0f172a;
+        }
+
+        .profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .profile {
+                flex-direction: row;
+                text-align: left;
+                gap: 25px;
+            }
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--light);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+
+        @media (min-width: 768px) {
+            .profile-image {
+                margin-bottom: 0;
+            }
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-name {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 3px;
+        }
+
+        .profile-title {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .profile-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 8px;
+        }
+
+        @media (min-width: 768px) {
+            .profile-details {
+                justify-content: flex-start;
+            }
+        }
+
+        .profile-detail {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            padding: 0 10px 10px;
+        }
+
+        @media (min-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr 2fr;
+            }
+        }
+
+        .section {
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        .section-content {
+            color: var(--text);
+        }
+
+        .about-text {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: var(--text);
+        }
+
+        .education-item, .experience-item {
+            margin-bottom: 12px;
+        }
+
+        .education-school, .experience-position {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+
+        .education-degree, .experience-company {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .education-date, .experience-date {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 4px;
+        }
+
+        .experience-details {
+            margin-top: 6px;
+        }
+
+        .experience-details ul, .education-details ul {
+            padding-left: 18px;
+            font-size: 0.85rem;
+        }
+
+        .experience-details li, .education-details li {
+            margin-bottom: 3px;
+        }
+
+        .skills-container {
+            margin-bottom: 15px;
+        }
+
+        .skills-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-size: 1rem;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .skill-item {
+            position: relative;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .skill-name {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+            color: var(--dark);
+            font-size: 0.85rem;
+        }
+
+        .skill-icon {
+            color: var(--accent);
+            font-size: 1rem;
+        }
+
+        .skill-percentage {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .skill-bar-bg {
+            height: 6px;
+            width: 100%;
+            background-color: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, var(--accent) 0%, #38bdf8 100%);
+            position: relative;
+            width: 0;
+            transition: width 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .skill-bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            animation: shine 2s infinite linear;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .skill-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .skill-badge {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .skill-badge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-badge.highlight {
+            background: linear-gradient(135deg, var(--accent) 0%, #38bdf8 100%);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 10px rgba(14, 165, 233, 0.3);
+        }
+
+        .skill-badge.highlight:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(14, 165, 233, 0.4);
+        }
+
+        .interests-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .interest-badge {
+            background-color: var(--secondary);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .service-item {
+            background-color: var(--card-bg);
+            border-radius: 6px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+
+        .service-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--dark);
+            font-size: 0.85rem;
+        }
+
+        .service-description {
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            height: 70px;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-title {
+            color: white;
+            font-size: 0.75rem;
+            text-align: center;
+            padding: 0 8px;
+        }
+
+        .awards-list {
+            list-style-type: disc;
+            padding-left: 18px;
+            font-size: 0.85rem;
+        }
+
+        .awards-list li {
+            margin-bottom: 4px;
+        }
+
+        .objectives-item {
+            margin-bottom: 8px;
+        }
+
+        .objectives-title {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.9rem;
+        }
+
+        .objectives-text {
+            font-size: 0.85rem;
+        }
+
+        #pdf-content {
+            background-color: white;
+        }
+
+        /* Styles for PDF/Print */
+        @media print {
+            .header {
+                display: none;
+            }
+
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+                padding: 10px;
+            }
+
+            body {
+                background-color: white;
+                font-size: 10pt;
+            }
+
+            .profile {
+                padding: 10px 0;
+            }
+
+            .profile-name {
+                font-size: 18pt;
+            }
+
+            .profile-title {
+                font-size: 12pt;
+            }
+
+            .section {
+                margin-bottom: 10px;
+                page-break-inside: avoid;
+            }
+
+            .section-title {
+                font-size: 12pt;
+                margin-bottom: 5px;
+            }
+
+            .main-content {
+                padding: 0 10px 10px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .gallery-item {
+                height: 60px;
+            }
+
+            .skills-list {
+                gap: 8px;
+            }
+
+            .skill-bar-bg {
+                height: 5px;
+            }
+
+            .experience-details ul, .education-details ul, .awards-list {
+                padding-left: 15px;
+            }
+
+            .experience-details li, .education-details li, .awards-list li {
+                margin-bottom: 2px;
+            }
+
+            .portfolio-item, .gallery-item {
+                break-inside: avoid;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        
+        /* Thêm icon flycam */
+        .fa-drone:before {
+            content: "\f085";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+        }
+
+        /* Cải thiện chất lượng in */
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            img {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+            }
+            
+            body {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+            
+            .container {
+                width: 100%;
+                max-width: 100%;
+                margin: 0;
+                padding: 5mm;
+            }
+            
+            .profile-image {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button class="btn btn-outline" onclick="window.print()">
+            <i class="fas fa-print"></i> In
+        </button>
+        <button class="btn btn-primary" onclick="downloadPDF()">
+            <i class="fas fa-download"></i> Tải PDF
+        </button>
+    </div>
+
+    <div id="pdf-content" class="container">
+        <div class="profile animate">
+            <div class="profile-image">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/a%CC%89nh%20%C4%91a%CC%A3i%20die%CC%A3%CC%82n.jpg-lfXwybk8P4YFhZ1lKUvBJ6QvTVfgnP.jpeg" alt="Trà Văn Hiếu (Quốt)">
+            </div>
+            <div class="profile-info">
+                <h1 class="profile-name">Trà Văn Hiếu (Quốt)</h1>
+                <h2 class="profile-title">Digital Creator & Flycam Specialist</h2>
+                <div class="profile-details">
+                    <div class="profile-detail">
+                        <i class="fas fa-calendar"></i>
+                        <span>09/10</span>
+                    </div>
+                    <div class="profile-detail">
+                        <i class="fas fa-phone"></i>
+                        <span>+84 326 704 392</span>
+                    </div>
+                    <div class="profile-detail">
+                        <i class="fas fa-envelope"></i>
+                        <span>hieutv@gmail.com</span>
+                    </div>
+                    <div class="profile-detail">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>TP. Hồ Chí Minh</span>
+                    </div>
+                    <div class="profile-detail">
+                        <i class="fab fa-facebook"></i>
+                        <span>facebook.com/travanhieu</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="left-column">
+                <section class="section animate delay-1">
+                    <h2 class="section-title">Giới Thiệu</h2>
+                    <div class="section-content">
+                        <p class="about-text">
+                            Digital Creator và Flycam Specialist với kinh nghiệm chuyên sâu trong lĩnh vực sự kiện, quảng cáo và dự án sáng tạo. Chuyên quay phim sự kiện, tiệc cưới và sản xuất video quảng cáo. Sở hữu kỹ năng kỹ thuật cao và khả năng kể chuyện bằng hình ảnh.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="section animate delay-2">
+                    <h2 class="section-title">Học Vấn</h2>
+                    <div class="section-content">
+                        <div class="education-item">
+                            <div class="education-school">Trường Cao đẳng Lý Tự Trọng Tp. HCM</div>
+                            <div class="education-degree">Quản trị kinh doanh</div>
+                            <div class="education-date">2018 - 2021</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section animate delay-3">
+                    <h2 class="section-title">Kỹ Năng</h2>
+                    <div class="section-content">
+                        <div class="skills-container">
+                            <h3 class="skills-title">Thiết Bị & Công Nghệ</h3>
+                            <div class="skills-list">
+                                <div class="skill-item">
+                                    <div class="skill-info">
+                                        <div class="skill-name">
+                                            <i class="fas fa-video skill-icon"></i>
+                                            <span>Máy quay chuyên nghiệp</span>
+                                        </div>
+                                        <div class="skill-percentage">95%</div>
+                                    </div>
+                                    <div class="skill-bar-bg">
+                                        <div class="skill-bar-fill" style="width: 95%;"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="skill-info">
+                                        <div class="skill-name">
+                                            <i class="fas fa-plane skill-icon"></i>
+                                            <span>Flycam/Drone</span>
+                                        </div>
+                                        <div class="skill-percentage">90%</div>
+                                    </div>
+                                    <div class="skill-bar-bg">
+                                        <div class="skill-bar-fill" style="width: 90%;"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="skill-info">
+                                        <div class="skill-name">
+                                            <i class="fas fa-lightbulb skill-icon"></i>
+                                            <span>Hệ thống ánh sáng</span>
+                                        </div>
+                                        <div class="skill-percentage">85%</div>
+                                    </div>
+                                    <div class="skill-bar-bg">
+                                        <div class="skill-bar-fill" style="width: 85%;"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="skill-info">
+                                        <div class="skill-name">
+                                            <i class="fab fa-adobe skill-icon"></i>
+                                            <span>Adobe Premiere Pro</span>
+                                        </div>
+                                        <div class="skill-percentage">80%</div>
+                                    </div>
+                                    <div class="skill-bar-bg">
+                                        <div class="skill-bar-fill" style="width: 80%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="skills-container">
+                            <h3 class="skills-title">Kỹ Năng Chuyên Môn</h3>
+                            <div class="skill-badges">
+                                <span class="skill-badge highlight">Quay phim sự kiện</span>
+                                <span class="skill-badge highlight">Quay flycam</span>
+                                <span class="skill-badge highlight">Dựng phim</span>
+                                <span class="skill-badge">Chụp ảnh</span>
+                                <span class="skill-badge">Thiết lập ánh sáng</span>
+                                <span class="skill-badge">Quay phim quảng cáo</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section animate delay-4">
+                    <h2 class="section-title">Dịch Vụ</h2>
+                    <div class="section-content">
+                        <div class="services-grid">
+                            <div class="service-item">
+                                <div class="service-icon">
+                                    <i class="fas fa-video"></i>
+                                </div>
+                                <h3 class="service-title">Quay phim sự kiện</h3>
+                                <p class="service-description">Quay phim chuyên nghiệp cho các sự kiện, hội nghị, tiệc cưới.</p>
+                            </div>
+                            <div class="service-item">
+                                <div class="service-icon">
+                                    <i class="fas fa-plane"></i>
+                                </div>
+                                <h3 class="service-title">Quay flycam</h3>
+                                <p class="service-description">Quay phim từ trên cao bằng flycam, tạo góc nhìn độc đáo.</p>
+                            </div>
+                            <div class="service-item">
+                                <div class="service-icon">
+                                    <i class="fas fa-film"></i>
+                                </div>
+                                <h3 class="service-title">Sản xuất video</h3>
+                                <p class="service-description">Sản xuất video quảng cáo, giới thiệu sản phẩm.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section animate delay-5">
+                    <h2 class="section-title">Thiết Bị</h2>
+                    <div class="section-content">
+                        <ul class="awards-list">
+                            <li>Máy quay Sony A7S III, Alpha 7</li>
+                            <li>Flycam DJI Mavic 3 Pro, DJI Air 2S</li>
+                            <li>Gimbal DJI RS 3 Pro</li>
+                            <li>MacBook Pro cho dựng phim</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+
+            <div class="right-column">
+                <section class="section animate delay-1">
+                    <h2 class="section-title">Tóm Tắt Chuyên Môn</h2>
+                    <div class="section-content">
+                        <p class="about-text">
+                            Digital Creator và Flycam Specialist với nhiều năm kinh nghiệm trong lĩnh vực sản xuất nội dung hình ảnh. Chuyên quay phim sự kiện, quảng cáo, và các dự án sáng tạo. Thành thạo sử dụng các thiết bị quay phim chuyên nghiệp, flycam, và hệ thống ánh sáng. Có khả năng làm việc độc lập và theo nhóm, đảm bảo chất lượng và đúng tiến độ.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="section animate delay-2">
+                    <h2 class="section-title">Kinh Nghiệm Làm Việc</h2>
+                    <div class="section-content">
+                        <div class="experience-item">
+                            <div class="experience-header">
+                                <div>
+                                    <div class="experience-position">Admin & Founder</div>
+                                    <div class="experience-company">A - Hiếu Photo</div>
+                                </div>
+                                <div class="experience-date">2020 - Hiện tại</div>
+                            </div>
+                            <div class="experience-details">
+                                <ul>
+                                    <li>Sáng lập và điều hành studio chuyên về quay phim và chụp ảnh sự kiện</li>
+                                    <li>Quay phim và sản xuất video cho các sự kiện doanh nghiệp, tiệc cưới</li>
+                                    <li>Quay flycam cho các dự án quảng cáo và giới thiệu bất động sản</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="experience-item">
+                            <div class="experience-header">
+                                <div>
+                                    <div class="experience-position">Freelancer</div>
+                                    <div class="experience-company">Phóng sự & Quay phim</div>
+                                </div>
+                                <div class="experience-date">2018 - Hiện tại</div>
+                            </div>
+                            <div class="experience-details">
+                                <ul>
+                                    <li>Quay phim sự kiện, hội nghị, và tiệc cưới cho nhiều khách hàng</li>
+                                    <li>Quay flycam cho các dự án quảng cáo và du lịch</li>
+                                    <li>Sản xuất video quảng cáo và giới thiệu sản phẩm</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="experience-item">
+                            <div class="experience-header">
+                                <div>
+                                    <div class="experience-position">Former Quản Trị Viên</div>
+                                    <div class="experience-company">HỘI THIỆN NGUYỆN BĐS</div>
+                                </div>
+                                <div class="experience-date">2019 - 2020</div>
+                            </div>
+                            <div class="experience-details">
+                                <ul>
+                                    <li>Biên tập và dựng video cho kênh YouTube của tổ chức</li>
+                                    <li>Quay phim các hoạt động thiện nguyện và sự kiện</li>
+                                    <li>Sản xuất nội dung video cho các chiến dịch gây quỹ</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section animate delay-3">
+                    <h2 class="section-title">Dự Án Nổi Bật</h2>
+                    <div class="section-content">
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/chu%CC%A3p%20%C4%91a%CC%81m%20cu%CC%9Bo%CC%9B%CC%81i.jpg-rouPNqTMOPx08vdliaoDEzz3UOvGRF.jpeg" alt="Chụp đám cưới">
+                                <div class="gallery-overlay">
+                                    <div class="gallery-title">Quay phim tiệc cưới</div>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/quay%20phim.jpg-eD7HXYmyldPZ80YAeclt1uE8kd6kZ5.jpeg" alt="Quay phim">
+                                <div class="gallery-overlay">
+                                    <div class="gallery-title">Quay phim chuyên nghiệp</div>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/su%CC%9B%CC%A3%20kie%CC%A3%CC%82n.jpg-keKV83th95dep9lZa4HR36dpAtBezj.jpeg" alt="Sự kiện">
+                                <div class="gallery-overlay">
+                                    <div class="gallery-title">Quay phim sự kiện</div>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/qua%CC%89ng%20ca%CC%81o.jpg-KUPZSAByDawrbcO1M7gsOniqpyWUmG.jpeg" alt="Quảng cáo">
+                                <div class="gallery-overlay">
+                                    <div class="gallery-title">Quảng cáo trang sức</div>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sa%CC%89n%20xua%CC%82%CC%81t%20video.jpg-2XmffLcIYHT5GZ0A3IexWKK6cMVnMf.jpeg" alt="Sản xuất video">
+                                <div class="gallery-overlay">
+                                    <div class="gallery-title">Sản xuất video</div>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/flycam.jpg-1LjLioZZm4E0FJcgVGpWswpWXVPwUw.jpeg" alt="Flycam">
+                                <div class="gallery-overlay">
+                                    <div class="gallery-title">Quay flycam</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section animate delay-4">
+                    <h2 class="section-title">Chuyên Môn</h2>
+                    <div class="section-content">
+                        <div class="skill-badges">
+                            <span class="skill-badge highlight">Event</span>
+                            <span class="skill-badge highlight">Wedding</span>
+                            <span class="skill-badge highlight">Advertising</span>
+                            <span class="skill-badge">Digital Content</span>
+                            <span class="skill-badge">Video Editing</span>
+                            <span class="skill-badge">Flycam</span>
+                            <span class="skill-badge">Photography</span>
+                            <span class="skill-badge">Lighting</span>
+                            <span class="skill-badge">Storytelling</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section animate delay-5">
+                    <h2 class="section-title">Mục Tiêu Nghề Nghiệp</h2>
+                    <div class="section-content">
+                        <div class="objectives-item">
+                            <div class="objectives-title">Mục tiêu ngắn hạn</div>
+                            <p class="objectives-text">Mở rộng đội ngũ và nâng cao chất lượng dịch vụ quay phim, đặc biệt là kỹ thuật quay flycam và sản xuất video quảng cáo.</p>
+                        </div>
+                        <div class="objectives-item">
+                            <div class="objectives-title">Mục tiêu dài hạn</div>
+                            <p class="objectives-text">Phát triển A-Hiếu Photo thành một trong những studio hàng đầu trong lĩnh vực sản xuất video và quay phim sự kiện tại TP.HCM.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animate elements when they come into view
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.animate');
+            animatedElements.forEach(element => {
+                element.style.opacity = '0';
+            });
+
+            setTimeout(() => {
+                animatedElements.forEach(element => {
+                    element.style.opacity = '1';
+                });
+            }, 100);
+        });
+
+        // Download as PDF function - sử dụng thư viện html2pdf
+        function downloadPDF() {
+            // Hiển thị thông báo
+            alert('Đang chuẩn bị tải xuống CV dưới dạng PDF...');
+            
+            // Đảm bảo tất cả các phần tử đã được render đầy đủ
+            const element = document.getElementById('pdf-content');
+            
+            // Đảm bảo tất cả hình ảnh đã được tải
+            const images = element.querySelectorAll('img');
+            const imagePromises = Array.from(images).map(img => {
+                if (img.complete) return Promise.resolve();
+                return new Promise(resolve => {
+                    img.onload = resolve;
+                    img.onerror = resolve;
+                });
+            });
+            
+            // Chờ tất cả hình ảnh được tải xong
+            Promise.all(imagePromises).then(() => {
+                // Cấu hình tối ưu cho html2pdf
+                const opt = {
+                    margin: [5, 5, 5, 5],
+                    filename: 'CV_TraVanHieu_Quot.pdf',
+                    image: { type: 'jpeg', quality: 1.0 }, // Tăng chất lượng hình ảnh lên mức tối đa
+                    html2canvas: { 
+                        scale: 3, // Tăng scale để có độ phân giải cao hơn
+                        useCORS: true,
+                        logging: true,
+                        letterRendering: true,
+                        allowTaint: true
+                    },
+                    jsPDF: { 
+                        unit: 'mm', 
+                        format: 'a4', 
+                        orientation: 'portrait',
+                        compress: false // Tắt nén để giữ chất lượng
+                    },
+                    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+                };
+                
+                // Tạo PDF với cấu hình tối ưu
+                html2pdf()
+                    .set(opt)
+                    .from(element)
+                    .save()
+                    .then(() => {
+                        console.log('PDF đã được tạo thành công!');
+                    })
+                    .catch(err => {
+                        console.error('Lỗi khi tạo PDF:', err);
+                        alert('Có lỗi xảy ra khi tạo PDF. Vui lòng thử lại.');
+                    });
+            });
+        }
+
+        // Animate skill bars when they come into view
+        function animateSkillBars() {
+            const skillBars = document.querySelectorAll('.skill-bar-fill');
+            skillBars.forEach(bar => {
+                const targetWidth = bar.style.width;
+                bar.style.width = '0';
+                setTimeout(() => {
+                    bar.style.width = targetWidth;
+                }, 300);
+            });
+        }
+
+        // Call the function when the document is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(animateSkillBars, 500);
+        });
+
+        // Cải thiện chất lượng in
+        window.onbeforeprint = function() {
+            document.querySelectorAll('.animate').forEach(el => {
+                el.style.opacity = '1';
+                el.style.animation = 'none';
+            });
+            
+            document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+                const targetWidth = bar.getAttribute('data-width') || bar.style.width;
+                bar.style.width = targetWidth;
+                bar.style.animation = 'none';
+            });
+        };
+
+        // Lưu trữ giá trị width ban đầu của skill bars
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+                bar.setAttribute('data-width', bar.style.width);
+            });
+        });
+    </script>
+</body>
+</html>
+
